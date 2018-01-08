@@ -1,12 +1,11 @@
-var xAngle, zAngle, vector, table, xCam, zCam, cameraZ, fov;
+var xAngle, zAngle, table, vector, xCam, zCam, cameraZ, fov, level;
 let wood;
 
 function setup() {
   createCanvas(800, 500, WEBGL);
   vector = createVector(0, 0, 0);
-  table = new Table();
-  angle = .01;
-  change = .01;
+
+  //Camera and Perspective stuff:
   xCam = 0;
   zCam = 0;
   xAngle = 0;
@@ -14,32 +13,37 @@ function setup() {
   xMouseDif = 0;
   yMouseDif = 0;
   cameraZ = (height / 2.0) / tan(PI * 60.0 / 360.0);
+  level = new Ground(1000, 2000);
+
 
 
 }
 
 function draw() {
-
+  background(50);
+  //Camera and Perspective:
   fov = PI / 3.0 + xCam;
-  if (fov <= 0) {
-
-  }
+  if (fov <= 0) {}
   camera(0, 0, (height / 2.0) / tan(PI * 30.0 / 180.0), 0, 0, 0, 0, 1, 0);
   perspective(fov, width / height, cameraZ / 10.0 + zCam, cameraZ * 10.0);
+  rotateX(-PI / 6);
 
-  background(50);
-
-  checkPosition();
+  //Builds the green grass floor
   push();
   rotateX(PI / 2);
   fill(96, 128, 56);
-  translate(0, 0, -60);
+  translate(0, 0, 0);
   plane(1000, 1000)
   pop();
-  fill(86, 47, 14);
-  table.build();
+
+
+  checkPosition();
+
+  translate(0, 0, -200);
+  level.build();
 }
 
+//Function used to adjust camera and perspective based on keys pressed
 function checkPosition() {
   if (keyIsDown(LEFT_ARROW)) {
     zCam -= 10;
