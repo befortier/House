@@ -26,6 +26,9 @@ function draw() {
   if (fov <= 0) {}
   camera(0, 0, (height / 2.0) / tan(PI * 30.0 / 180.0), 0, 0, 0, 0, 1, 0);
   perspective(fov, width / height, cameraZ / 10.0, cameraZ * 10.0);
+
+  translate(-1*(mouseX - width / 2), -1*(mouseY - height / 2));
+
   rotateX(-PI / 6);
   rotateX(angle);
 
@@ -37,7 +40,6 @@ function draw() {
   // plane(1000, 1000)
   // pop();
   angle += .01
-
 
   checkPosition();
 
