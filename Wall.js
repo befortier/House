@@ -7,10 +7,12 @@ function Wall(x, y, z, height, width, depth) {
 
 
   this.build = function() {
+    push();
     translate(this.pos.x, this.pos.y, this.pos.z);
-    stroke(0);
+    noStroke()
     fill(255);
     box(this.w, this.h, this.d);
+    pop();
 
 
   }

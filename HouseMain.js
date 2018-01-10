@@ -1,4 +1,4 @@
-var xAngle, zAngle, table, vector, xCam, zCam, cameraZ, fov, level, angle;
+var xAngle, zAngle, vector, xCam, zCam, cameraZ, fov, angle, house;
 let wood;
 
 function setup() {
@@ -13,9 +13,8 @@ function setup() {
   xMouseDif = 0;
   yMouseDif = 0;
   cameraZ = (height / 2.0) / tan(PI * 60.0 / 360.0);
-  level = new Ground(400, 200);
   angle = 0;
-
+  house = new House(400, 200, 2, 2)
 
 }
 
@@ -27,10 +26,10 @@ function draw() {
   camera(0, 0, (height / 2.0) / tan(PI * 30.0 / 180.0), 0, 0, 0, 0, 1, 0);
   perspective(fov, width / height, cameraZ / 10.0, cameraZ * 10.0);
 
-  translate(-1*(mouseX - width / 2), -1*(mouseY - height / 2));
+  translate(-1 * (mouseX - width / 2), -1 * (mouseY - height / 2));
 
   rotateX(-PI / 6);
-  rotateX(angle);
+  rotateX(-angle);
 
   //Builds the green grass floor
   // push();
@@ -40,11 +39,9 @@ function draw() {
   // plane(1000, 1000)
   // pop();
   angle += .01
-
+  house.build();
   checkPosition();
 
-  //translate(0, 0, -200);
-  level.build();
 }
 
 //Function used to adjust camera and perspective based on keys pressed

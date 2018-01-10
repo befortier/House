@@ -3,6 +3,7 @@
     this.scl = scl;
 
     this.build = function() {
+      push();
       translate(this.pos.x, this.pos.y, this.pos.z);
       stroke(0);
       fill(86, 47, 14);
@@ -15,5 +16,6 @@
       }
       translate(0 * this.scl, -.65 * this.scl, 1 * this.scl)
       box(5 * this.scl, .3 * this.scl, 2 * this.scl);
+      pop();
     }
   }
