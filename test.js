@@ -11,12 +11,12 @@ function draw() {
 
 
     // Potential rotate the camera according to the mouse position + some trig porportions
-    rotateX(frameCount*.01);
-    rotateY(frameCount*.01);
-    rotateZ(frameCount*.01);
+    // rotateX(frameCount*.01);
+    rotateY(mouseX/width);
+    // rotateZ(frameCount*.01);
 
     checkButtons();
-    translate(-1*(mouseX - width / 2) + cameraX, -1*(mouseY - height / 2), cameraZ);
+    translate(cameraX, -1*(mouseY - height / 2), cameraZ);
 
     box(100, 100, 100);
 }
